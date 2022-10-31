@@ -1,15 +1,16 @@
 import pandas as pd
 from datetime import datetime
 
-class standary():
+class Standary():
     def __init__(self):
         ...
-    def standa01(setdatos,deltatime):
-        setdatos['datetime'].isoformat()
-        period = setdatos['datetime'].to_period("Y")
+    def standa01(self,setdatos):
+        arraset = setdatos.to_xarray()
+        arraset['datetime'].isoformat()
+        period = arraset['datetime'].to_period("Y")
         groupe = pd.Grouper(level=0,freq='H')
-        setdatos.groupby([period,groupe]).count()
+        arraset.groupby([period,groupe]).count()
 
-        return setdatos
+        return arraset
 
 
