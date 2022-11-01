@@ -43,7 +43,7 @@ class Standary():
     def __init__(self):
         ...
 
-    def stanjoin(self,setdatos):
+    def stanjoin(self,setdatos, omixom:bool):
 
         """ Función para unir columnas de fecha y hora en una única con
         formato datetime y homogeneizar por hora. Agrupa valores repetidos
@@ -53,6 +53,8 @@ class Standary():
         ----------
         setdatos: set
             data set crudo (omixom requiere)
+        omixom: bool
+            si es True, concatena las columnas de fecha y hora
         
         Returns
         -------
@@ -60,8 +62,9 @@ class Standary():
             modificado
 
         """
+        if omixom:
+            setdatos['datetime'] = setdatos['Fecha'] + ' ' + setdatos['Hora']
 
-        setdatos['datetime'] = setdatos['Fecha'] + ' ' + setdatos['Hora']
         setdatos['datetime'] = pd.to_datetime(setdatos['datetime'],
                                               dayfirst = True,
                                               infer_datetime_format=True).round('H')
