@@ -114,7 +114,7 @@ class Comply():
         for j in dataset.index:
             count += 1
             if j==inicio:
-                dataset.drop(dataset.index[[0,count]], inplace=True)
+                dataset.drop(dataset.index[[0,count]], axis='index', inplace=True)
             if j==fin:
                 dataset.drop(dataset.index[[count,-1]], inplace=True)
 
