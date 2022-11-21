@@ -73,3 +73,53 @@ class Standary():
         
         return daset
 
+class Comply():
+    def __init__(self):
+        ...
+    def fill_in(self,dataset):
+
+        """Función para rellenar con valores nulos los datos faltantes en 
+        el set
+
+        Parameters
+        ----------
+        dataset: set
+            set de datos a rellenar
+
+        Returns
+        -------
+        dataset: set
+            set del rango buscado
+        """
+
+        dataset.resample('H').fillna(None)
+
+        return dataset
+
+    def cuty(self,dataset,inicio, fin):
+        
+        """Función para cortar el set de datos
+        
+        Parameters
+        ----------
+        dataset: set
+            set de datos a recortar
+        
+        Returns
+        -------
+        dataset_cut: set
+            set recortado
+        """
+        count = -1
+        for j in dataset.index:
+            count += 1
+            if j==inicio:
+                dataset.drop(dataset.index[[0,count]], inplace=True)
+            if j==fin:
+                dataset.drop(dataset.index[[count,-1]], inplace=True)
+
+        if inicio and fin not in dataset.index:
+            raise Exception('The selected date range is not included in the dataset')
+
+        return dataset
+
